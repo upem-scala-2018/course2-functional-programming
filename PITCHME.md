@@ -6,15 +6,35 @@
 
 ---
 
+## Régles et objectifs du paradigme
 
-# Imutabilité
+
+---
+
+# Immuabilité
 
 ---
 
 # La fonction
 
+Penser à la fonction mathématique avec les propriétés suivantes:
 - Totale
 - Pure
+
+*⚠* Ca n'est pas simplement une fonction au sens programmation! *⚠*
+
+---
+
+## La fonction totale
+
+Une fonction est dite totale si elle admet, pour toute valeur du 
+domaine un valeur du codomaine.
+
+En maths: ℤ => ℤ
+En programmation: Int => Int
+
+En maths: ℤ => ℕ
+En programmation: Int => ???
 
 ---
 
@@ -24,11 +44,18 @@
 def max(a: Int, b: Int) = if (a >= b) a else b
 ```
 
-la fonction partielle
+la fonction partielle (bottom element/Nothing)
+```scala
+def partial(unit: String) = 
+  if (unit == "kilo") 1000
+  else if (unit == "mega") 1000000
+  else throw new IllegalArgumentException("Unkown unit")
+```
+
 ```scala
 def fib(n: Int): Int = 
-    if (n == 0 || n == 1) 1 
-    else fib(n-1) + fib(n-2)
+  if (n == 0 || n == 1) 1 
+  else fib(n-1) + fib(n-2)
 ```
 
 ---
@@ -43,6 +70,38 @@ myString.indexOf()
 Math.sqrt
 Math.div
 ```
+
+---
+
+## Fonctions totales et types primitifs
+
+Contrairement aux mathematiques il n'est pas possible de directement
+restreindre le domaine d'une fonction.
+Les briques de bases en programmation sont les types primitifs (Int, Boolean).
+
+Exemple: 
+Pour tout n >= 1, Fib(n) = Fib(n-1) + Fib(n-2)
+def fib(n: ???) = fib(n-1) + fib(n-2)
+
+---
+
+### Modification du codomaine
+
+Au lieu de restreindre le domaine, on étend le codomaine
+
+```scala
+def fib(n: Int): Option[Int] = ???
+```
+
+---
+
+### Modification du domaine
+
+```scala
+def fib(n: PositiveInteger): Int = ???
+```
+
+---
 
 ## La fonction pure
 ```scala
@@ -87,6 +146,10 @@ sa valeur de retour.
 
 ---
 
+## Programmation déclarative et impérative
+
+---
+
 ## Une expression 
 
 ---
@@ -100,4 +163,16 @@ sa valeur de retour.
 
 ---
 
+# Algebraic Data Types (ADT)
+
+
+---
+
+# Generalized Algebraic Data Types (GADT)
+
+---
+
+# A retenir
+
+Functions mathématiques (*totales* et *pure*)
 
