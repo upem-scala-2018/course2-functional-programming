@@ -1,8 +1,14 @@
-# Functional programming
+# La programmation fonctionelle
 
 ---
 
 # Un paradigme de programmation
+
+Une approche/façon de programmer
+
+- La programmation orienté objet
+- La programmation impérative
+- La programmation fonctionelle
 
 ---
 
@@ -12,6 +18,20 @@
 ---
 
 # Immuabilité
+
+La déclaration de variables est définitive.
+On peut apparenter cela à une équation mathématique.
+```
+val n = 5
+```
+
+Cela s'oppose à l'assignation/réasignation de la programmation impérative
+```
+var n = 5
+n = 6
+```
+
+Le symbole *=* sert à la *déclaration*, oubliez l'assignation intrinsequement impérative.
 
 ---
 
@@ -136,13 +156,47 @@ sa valeur de retour.
 
 ## Curryfication
 
+```
+def add(n: Int)(m: Int) = n + m
+```
+
 ---
 
 ## Application partielle
+L'application partielle est le dual de la curryfication.
+
+Appliquer partiellement une fonction currifiée
+```
+def add5 = add(5)
+```
+
+En scala il est aussi possible de :
+Appliquer partiellement une fonction non currifiée
+```
+def add5 = add(5, _)
+```
+Appliquer partiellement les paramètre non linéairement
+```
+def add5 = add(_, 5)
+def add5 = add(_)(5)
+```
 
 ---
 
 # Expressions vs instructions
+
+Les instructions sont des *commandes* et sont donc à proscrire (impératif)
+```
+if (cond)
+    return "yes"
+else
+    return "no"
+```
+
+Les expression décrivent une valeur
+```
+if (cond) "yes" else "no"
+``` 
 
 ---
 
@@ -165,6 +219,29 @@ sa valeur de retour.
 
 # Algebraic Data Types (ADT)
 
+Les types de données algébriques sont une union de produits.
+
+Type union
+```
+data Bool = True | False
+Bool peut prendre les valeurs True *ou* False
+complexité du type = 2
+```
+
+Type produit
+```
+data Point = P Int Int Bool
+P peut pendre toutes les combinaison de Int et Int et Bool
+complexité du type = Int * Int * Bool
+```
+
+En scala
+```
+sealed trait Tree
+case object Empty extends Tree
+case class Node(v: Int) extends Tree
+case class Branch(left: Tree, right: Tree, v: Int) extends Tree
+```
 
 ---
 
@@ -175,4 +252,6 @@ sa valeur de retour.
 # A retenir
 
 Functions mathématiques (*totales* et *pure*)
+Utilisation d'expressions
+Des ADT pour la modélisation de données
 
