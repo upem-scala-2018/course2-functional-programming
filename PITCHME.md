@@ -69,12 +69,12 @@ la fonction partielle (bottom element/Nothing)
 def partial(unit: String) = 
   if (unit == "kilo") 1000
   else if (unit == "mega") 1000000
-  else throw new IllegalArgumentException("Unkown unit")
+  else throw new IllegalArgumentException("Unknown unit")
 ```
 
 ```scala
 def fib(n: Int): Int = 
-  if (n == 0 || n == 1) 1 
+  if (n == 1 || n == 2) 1 
   else fib(n-1) + fib(n-2)
 ```
 
