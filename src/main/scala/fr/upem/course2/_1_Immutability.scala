@@ -7,9 +7,9 @@ import scala.collection.mutable.ListBuffer
   * Aucune réassignation ou mutation n'est autorisé
   * Autrement-dit, ne pas utiliser de "var" ni de structures mutables (comme scala.collection.mutable.*)
   */
-object Immutability {
+object _1_Immutability {
 
-  // Calcul de la comme des entier passés en argument
+  // 1.1 Calcul de la comme des entier passés en argument
   def sumMutable(l: List[Int]): Int = {
     var sum = 0
     l.foreach(i => sum += i)
@@ -19,7 +19,7 @@ object Immutability {
   def sumImmutable(l: List[Int]): Int = ???
 
 
-  // Compte le nombre d'élements satisfaisant une certaine condition
+  // 1.2 Compte le nombre d'élements satisfaisant une certaine condition
   def numberOfMutable[A](l: List[A])(predicate: A => Boolean): Int = {
     var count = 0
     l.foreach(a => if (predicate(a)) count += 1)
@@ -29,7 +29,7 @@ object Immutability {
   def numberOfImmutable[A](l: List[A], predicate: A => Boolean): Int = ???
 
 
-  // Calcul le prix en fonction de l'âge
+  // 1.3 Calcul le prix en fonction de l'âge
   def priceMutable(age: Int): Int = {
     if (age < 4) return 0
     else if (age < 12) return 4
@@ -42,7 +42,7 @@ object Immutability {
   def priceImmutable(age: Int): Int = ???
 
 
-  // Fusionne deux liste triés et retourne une nouvelle liste triée
+  // 1.4 Fusionne deux liste triés et retourne une nouvelle liste triée
   def mergeSorted(l1: List[Int], l2: List[Int]): List[Int] = {
     var result = new ListBuffer[Int]
     var rest1 = ListBuffer.concat(l1)

@@ -1,9 +1,9 @@
 package fr.upem.course2
 
-import fr.upem.course2.Immutability._
+import fr.upem.course2._1_Immutability._
 import org.scalatest.{FlatSpec, Matchers}
 
-class ImmutabilityTest extends FlatSpec with Matchers {
+class _1_ImmutabilityTest extends FlatSpec with Matchers {
 
   "Sum" should "compute the sum of given integers" in {
     sumMutable(List(7, 3, 10, 1)) should be(21)

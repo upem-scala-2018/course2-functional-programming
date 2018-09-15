@@ -1,4 +1,4 @@
-# La programmation fonctionelle
+# La programmation fonctionnelle
 
 ---
 
@@ -255,3 +255,16 @@ Functions mathématiques (*totales* et *pure*)
 Utilisation d'expressions
 Des ADT pour la modélisation de données
 
+---
+
+# Du Scala fonctionnel
+
+Le sous-ensemble "Scallazi"
+- Pas de null
+- Pas de catching exceptions in pure code
+- Pas de type casing (isInstanceOf)
+- Pas de type casting (asInstanceOf)
+- Pas de side-effects
+- Pas de equals, toString, hashCode
+- Pas de notify or wait in pure code
+- Pas de .getClass
