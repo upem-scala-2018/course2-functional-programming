@@ -258,6 +258,108 @@ case class Branch(left: Tree, right: Tree, v: Int) extends Tree
 
 ---
 
+## Complexité des types
+
+Combien de *Nothing* ?
+Combien de *Unit* ?
+Combien de *Boolean* ?
+Combien de *Byte* ?
+Combien de *Int* ?
+Combien de *String* ?
+
+---
+
+## Complexité des types
+
+Combien de *Nothing* ? *0*
+Combien de *Unit* ? *1*
+Combien de *Boolean* ? *2*
+Combien de *Byte* ? *256*
+Combien de *Int* ? *2^32*
+Combien de *String* ? *∞*
+
+---
+
+## Complexité des types produits
+
+Combien de Boolean et Boolean ?
+Combien de Boolean et Byte ?
+Combien de Boolean et Unit ?
+Combien de Boolean et Nothing ?
+
+---
+
+## Complexité des types produits
+
+Combien de Boolean et Boolean ? *2 \* 2 = 4*
+Combien de Boolean et Byte ? *2 \* 256 = 512*
+Combien de Boolean et Unit ? *2 \* 1 = 2*
+Combien de Boolean et Nothing ? *2 \* 0 = 0*
+
+---
+
+## Complexité des types somme
+
+Combien de Boolean et Boolean ?
+Combien de Boolean et Byte ?
+Combien de Boolean et Unit ?
+Combien de Boolean et Nothing ?
+
+---
+
+## Complexité des types somme
+
+Combien de Boolean et Boolean ? *2 + 2 = 4*
+Combien de Boolean et Byte ? *2 + 256 = 258*
+Combien de Boolean et Unit ? *2 + 1 = 3*
+Combien de Boolean et Nothing ? *2 + 0 = 2*
+
+---
+
+## Complexité d'un ADT
+
+Combien de (Boolean et Unit) ou Byte ? *(2 \* 1) + 256 = 512*
+Combien de (Boolean ou Unit) et Boolean ? *(2 + 1) \* 256 = 768*
+Combien de Boolean et Byte et Noting ? *2 \* 256 \* 0 = 0*
+
+---
+
+## Encodage des types unions
+
+Encodage par sous-typage
+```
+sealed trait Direction
+case object West extends Direction
+case object North extends Direction
+case object East extends Direction
+case object South extends Direction
+```
+
+```
+val errorOrSuccess: Either[Error, Int] = readFile("file.txt")
+```
+
+---
+
+## Encodage des types produits
+
+```
+case class Person(name: String, age: Int)
+
+case class Color(red: Int, green: Int, blue: Int)
+
+val pair: (Int, String = (5, "Hello world !)
+```
+
+---
+
+## Exemple d'ADTs
+
+```
+```
+
+---
+
 # Generalized Algebraic Data Types (GADT)
 
 ---
