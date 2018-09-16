@@ -356,19 +356,21 @@ val pair: (Int, String = (5, "Hello world !)
 ## Exemple d'ADTs
 
 ```
+sealed trait Vehicle
+case object Bycicle extends Vehicle 
+case class Motorcycle(horsepower: Int) extends Vehicle
+case class Car(doors: Int, weight: Int) extends Vehicle
 ```
 
 ---
 
-# Generalized Algebraic Data Types (GADT)
+## Generalized Algebraic Data Types (GADT)
 
----
-
-# A retenir
-
-Functions mathématiques (*totales* et *pure*)
-Utilisation d'expressions
-Des ADT pour la modélisation de données
+```
+sealed trait Option[A]
+case object None extends Option[Nothing]
+case class Some[A](a: A) extends Option[A]
+```
 
 ---
 
@@ -383,3 +385,14 @@ Le sous-ensemble "Scallazi"
 - Pas de equals, toString, hashCode
 - Pas de notify or wait in pure code
 - Pas de .getClass
+
+---
+
+# A retenir
+
+- Functions mathématiques (*totales* et *pures*)
+- Résourdre les calculs par une approche déclarative plutôt qu'impérative
+- Des ADT pour la modélisation de données
+- Ce méfier des features impératives de Scala 
+
+---
