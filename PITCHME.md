@@ -152,12 +152,25 @@ sa valeur de retour.
 
 ## Fonction d'ordre supérieur
 
+Une fonction d'ordre supérieur satisfait est un fonction qui:
+- prend une ou plusieurs fonctions en paramètre
+- retourne une fonction
+
+Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.
+Pouvez-vous donner quelques exemples ?
+
 ---
 
 ## Curryfication
 
+Une fonction est dit *currifiée* si elle prend un unique argument,
+La *currification* est le processus par lequel un fonction à plusieurs arguement est traduite
+en une séquence de fonctions a un argument.
+
 ```
-def add(n: Int)(m: Int) = n + m
+def add(a: Int, b: Int) = a + b
+def add(a: Int)(b: Int) = a + b
+val add: Int => Int => Int = a => b => a + b
 ```
 
 ---
