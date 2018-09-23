@@ -19,14 +19,14 @@ Une approche/façon de programmer
 
 # Immuabilité
 
-La déclaration de variables est définitive.
+La déclaration de variables est définitive.\
 On peut apparenter cela à une équation mathématique.
-```
+```scala
 val n = 5
 ```
 
 Cela s'oppose à l'assignation/réasignation de la programmation impérative
-```
+```scala
 var n = 5
 n = 6
 ```
@@ -47,8 +47,7 @@ Penser à la fonction mathématique avec les propriétés suivantes:
 
 ## La fonction totale
 
-Une fonction est dite totale si elle admet, pour toute valeur du 
-domaine un valeur du codomaine.
+Une fonction est dite totale si elle admet, pour toute valeur du domaine un valeur du codomaine.
 
 En maths: ℤ => ℤ
 En programmation: Int => Int
@@ -95,19 +94,20 @@ Math.div
 
 ## Fonctions totales et types primitifs
 
-Contrairement aux mathematiques il n'est pas possible de directement
-restreindre le domaine d'une fonction.
+Contrairement aux mathematiques il n'est pas possible de directement restreindre le domaine d'une fonction.\
 Les briques de bases en programmation sont les types primitifs (Int, Boolean).
 
 Exemple: 
-Pour tout n >= 1, Fib(n) = Fib(n-1) + Fib(n-2)
+Pour tout n >= 1, Fib(n) = Fib(n-1) + Fib(n-2)\
+```scala
 def fib(n: ???) = fib(n-1) + fib(n-2)
+```
 
 ---
 
 ### Modification du codomaine
 
-Au lieu de restreindre le domaine, on étend le codomaine
+Au lieu de restreindre le domaine, on étend le codomaine.
 
 ```scala
 def fib(n: Int): Option[Int] = ???
@@ -128,7 +128,7 @@ def fib(n: PositiveInteger): Int = ???
 def add(a: Int, b: Int) = a + b
 ```
 
-la fonction impure (utilisation d'un état)
+La fonction impure (utilisation d'un état)
 ```scala
 def add(a: Int, b: Int) = a + b + globalVar
 ```
@@ -144,9 +144,7 @@ def add(a: Int, b: Int) = {
 ---
 
 ### Définition effet de bord
-Une fonction est dite à effet de bord si elle a 
-une interaction *observable* avec le monde exterieur autre que 
-sa valeur de retour.
+Une fonction est dite à effet de bord si elle a une interaction *observable* avec le monde exterieur autre que sa valeur de retour.
 
 ---
 
@@ -156,18 +154,17 @@ Une fonction d'ordre supérieur satisfait est un fonction qui:
 - prend une ou plusieurs fonctions en paramètre
 - retourne une fonction
 
-Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.
+Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.\
 Pouvez-vous donner quelques exemples ?
 
 ---
 
 ## Curryfication
 
-Une fonction est dit *currifiée* si elle prend un unique argument,
-La *currification* est le processus par lequel un fonction à plusieurs arguement est traduite
-en une séquence de fonctions a un argument.
+Une fonction est dit *currifiée* si elle prend un unique argument.\
+La *currification* est le processus par lequel un fonction à plusieurs arguements est traduite en une séquence de fonctions a un argument.
 
-```
+```scala
 def add(a: Int, b: Int) = a + b
 def add(a: Int)(b: Int) = a + b
 val add: Int => Int => Int = a => b => a + b
@@ -179,17 +176,19 @@ val add: Int => Int => Int = a => b => a + b
 L'application partielle est le dual de la curryfication.
 
 Appliquer partiellement une fonction currifiée
-```
+```scala
 def add5 = add(5)
 ```
 
 En scala il est aussi possible de :
+
 Appliquer partiellement une fonction non currifiée
-```
+```scala
 def add5 = add(5, _)
 ```
+
 Appliquer partiellement les paramètre non linéairement
-```
+```scala
 def add5 = add(_, 5)
 def add5 = add(_)(5)
 ```
@@ -199,7 +198,7 @@ def add5 = add(_)(5)
 # Expressions vs instructions
 
 Les instructions sont des *commandes* et sont donc à proscrire (impératif)
-```
+```scala
 if (cond)
     return "yes"
 else
@@ -207,7 +206,7 @@ else
 ```
 
 Les expression décrivent une valeur
-```
+```scala
 if (cond) "yes" else "no"
 ``` 
 
@@ -232,24 +231,28 @@ if (cond) "yes" else "no"
 
 # Algebraic Data Types (ADT)
 
-Les types de données algébriques sont une union de produits.
+Les types de données algébriques servent à la modélisation de la donnée.\
+Un approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets).
+Une approche fonctionelle modélise le domaine au travers d'ADT.
 
-Type union
+Techniquement, un ADT est une union de produits.
+
+---
+
+Type union (Haskell)
 ```
 data Bool = True | False
 Bool peut prendre les valeurs True *ou* False
-complexité du type = 2
 ```
 
-Type produit
+Type produit (Haskell)
 ```
-data Point = P Int Int Bool
-P peut pendre toutes les combinaison de Int et Int et Bool
-complexité du type = Int * Int * Bool
+data Coordinates = Cood Float Float
+Le constructeur "Coord" peut pendre toutes les combinaison de Float *et* Float
 ```
 
-En scala
-```
+En scala (ADT par sous-typage)
+```scala
 sealed trait Tree
 case object Empty extends Tree
 case class Node(v: Int) extends Tree
@@ -327,7 +330,7 @@ Combien de Boolean et Byte et Noting ? *2 \* 256 \* 0 = 0*
 ## Encodage des types unions
 
 Encodage par sous-typage
-```
+```scala
 sealed trait Direction
 case object West extends Direction
 case object North extends Direction
@@ -335,7 +338,7 @@ case object East extends Direction
 case object South extends Direction
 ```
 
-```
+```scala
 val errorOrSuccess: Either[Error, Int] = readFile("file.txt")
 ```
 
@@ -343,7 +346,7 @@ val errorOrSuccess: Either[Error, Int] = readFile("file.txt")
 
 ## Encodage des types produits
 
-```
+```scala
 case class Person(name: String, age: Int)
 
 case class Color(red: Int, green: Int, blue: Int)
@@ -355,7 +358,7 @@ val pair: (Int, String = (5, "Hello world !)
 
 ## Exemple d'ADTs
 
-```
+```scala
 sealed trait Vehicle
 case object Bycicle extends Vehicle 
 case class Motorcycle(horsepower: Int) extends Vehicle
@@ -364,27 +367,43 @@ case class Car(doors: Int, weight: Int) extends Vehicle
 
 ---
 
+## ADT Paramétriques
+
+```scala
+sealed trait Tree[+A]
+case object Leaf extends Tree[Nothing]
+case class Node[A](a: A, l: Tree[A], r: Tree[A]) extends Tree[A]
+```
+
+Nombreux dans la librairie standard.
+
+---
+
 ## Generalized Algebraic Data Types (GADT)
 
-```
-sealed trait Option[A]
-case object None extends Option[Nothing]
-case class Some[A](a: A) extends Option[A]
+Les GADTs sont une géneralization des ADT paramétrés.\
+Plus puissants et plus expressifs que les ADT "classiques".
+
+Comment modéliser le DSL suivant ?
+```scala
+sealed trait Expr
+case class IntVal(a: Int) extends Expr
+case class StringVal(a: String) extends Expr
+case class Add ???
+case class Concat ???
 ```
 
 ---
 
-# Du Scala fonctionnel
+Avec un GADT, chaque type produit peut instancier explicitement l'ADT.
 
-Le sous-ensemble "Scallazi"
-- Pas de null
-- Pas de catching exceptions in pure code
-- Pas de type casing (isInstanceOf)
-- Pas de type casting (asInstanceOf)
-- Pas de side-effects
-- Pas de equals, toString, hashCode
-- Pas de notify or wait in pure code
-- Pas de .getClass
+```scala
+sealed trait Expr[A]
+case class IntVal(a: Int) extends Expr[Int]
+case class StringVal(a: String) extends Expr[String]
+case class Add(lhs: Expr[Int], rhs: Expr[Int]) extends Expr[Int]
+case class Concat(lhs: Expr[String], rhs: Expr[String]) extends Expr[String]
+```
 
 ---
 
@@ -393,6 +412,12 @@ Le sous-ensemble "Scallazi"
 - Functions mathématiques (*totales* et *pures*)
 - Résourdre les calculs par une approche déclarative plutôt qu'impérative
 - Des ADT pour la modélisation de données
-- Ce méfier des features impératives de Scala 
 
+- Ce méfier des features impératives de Scala
+    - Pas de null
+    - Pas de catching d'exceptions (dans du code pure)
+    - Pas d'effets de bord (dans du code pure)
+    - Pas de type casting (asInstanceOf)
+    - Pas de equals, toString, hashCode
+    
 ---
