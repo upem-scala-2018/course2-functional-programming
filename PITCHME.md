@@ -14,13 +14,11 @@ Une approche/façon de programmer
 
 ## Régles et objectifs du paradigme
 
-
 ---
 
 # Immuabilité
 
-La déclaration de variables est définitive.\
-On peut apparenter cela à une équation mathématique.
+La déclaration de variables est définitive, on peut apparenter cela à une équation mathématique
 ```scala
 val n = 5
 ```
@@ -31,7 +29,7 @@ var n = 5
 n = 6
 ```
 
-Le symbole *=* sert à la *déclaration*, oubliez l'assignation intrinsequement impérative.
+Le symbole **=** sert à la **déclaration**, oubliez l'assignation intrinsequement impérative.
 
 ---
 
@@ -41,7 +39,7 @@ Penser à la fonction mathématique avec les propriétés suivantes:
 - Totale
 - Pure
 
-*⚠* Ca n'est pas simplement une fonction au sens programmation! *⚠*
+**⚠** Ca n'est pas simplement une fonction au sens programmation! **⚠**
 
 ---
 
@@ -59,23 +57,27 @@ En programmation: Int => ???
 
 ## La fonction totale
 
+La de fonction totale
 ```scala
 def max(a: Int, b: Int) = if (a >= b) a else b
 ```
 
-la fonction partielle (bottom element/Nothing)
+Une fonction partielle (terminaison du programme)
 ```scala
-def partial(unit: String) = 
+def partial(unit: String): Int = 
   if (unit == "kilo") 1000
   else if (unit == "mega") 1000000
   else throw new IllegalArgumentException("Unknown unit")
 ```
 
+Une fonction partielle (non terminaison/ boucle infinie)
 ```scala
 def fib(n: Int): Int = 
   if (n == 1 || n == 2) 1 
   else fib(n-1) + fib(n-2)
 ```
+
+Le type d'une terminaison (exception) ou d'une non-terminsaison (boucle infinie) est décrite par le type **Nothing** (bottom element).
 
 ---
 
@@ -90,21 +92,26 @@ Math.sqrt
 Math.div
 ```
 
+*Demonstration*
+
 ---
 
 ## Fonctions totales et types primitifs
 
-Contrairement aux mathematiques il n'est pas possible de directement restreindre le domaine d'une fonction.\
+Contrairement aux mathematiques il n'est pas possible de directement restreindre le domaine d'une fonction.
+
 Les briques de bases en programmation sont les types primitifs (Int, Boolean).
 
 Exemple: 
-Pour tout n >= 1, Fib(n) = Fib(n-1) + Fib(n-2)\
+- En math: Pour tout **n >= 1**, Fib(n) = Fib(n-1) + Fib(n-2)
+- En Scala
 ```scala
 def fib(n: ???) = fib(n-1) + fib(n-2)
 ```
 
 ---
 
+## Rendre une fonction partielle totale
 ### Modification du codomaine
 
 Au lieu de restreindre le domaine, on étend le codomaine.
@@ -113,13 +120,25 @@ Au lieu de restreindre le domaine, on étend le codomaine.
 def fib(n: Int): Option[Int] = ???
 ```
 
+La solution n'est pas idéal
+- La fonction fib a plusieurs responsabilités (gestion des valeurs invalides + calcul de la suite de fibonacci)
+- L'appel *valide* fib(8) retourne Some(13) et non 13
+
 ---
 
-### Modification du domaine
+### Modification du domaine ?
 
+Refinement types: un type primitif + un prédicat
+- PositiveInteger: i & (i: Int, i > 0) 
+- EvenNumber: i & (i: Int, i % 2 == 0) 
 ```scala
 def fib(n: PositiveInteger): Int = ???
 ```
+
+- La définition de types "affinés" n'est pas supportée nativement par Scala mais possible au travers de *Refined*
+- C'est une feature présente plutôt dans des langages "académiques" (liquid Haskell)
+
+*Demonstration*
 
 ---
 
@@ -128,12 +147,12 @@ def fib(n: PositiveInteger): Int = ???
 def add(a: Int, b: Int) = a + b
 ```
 
-La fonction impure (utilisation d'un état)
+La fonction impure non déterministe (utilisation d'un état)
 ```scala
 def add(a: Int, b: Int) = a + b + globalVar
 ```
 
-la fonction impure (effet de bord)
+La fonction impure (effet de bord)
 ```scala
 def add(a: Int, b: Int) = {
   writeFile("log.txt")
@@ -141,10 +160,12 @@ def add(a: Int, b: Int) = {
 }
 ```
 
+*Demonstration*
+
 ---
 
 ### Définition effet de bord
-Une fonction est dite à effet de bord si elle a une interaction *observable* avec le monde exterieur autre que sa valeur de retour.
+Une fonction est dite à effet de bord si elle a une interaction **observable** avec le monde exterieur autre que sa valeur de retour.
 
 ---
 
@@ -154,15 +175,27 @@ Une fonction d'ordre supérieur satisfait est un fonction qui:
 - prend une ou plusieurs fonctions en paramètre
 - retourne une fonction
 
-Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.\
+Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.
+
 Pouvez-vous donner quelques exemples ?
+
+---
+
+### Exemples de fonctions d'ordre supérieur
+
+```scala
+List("1", "foo").filter(isInt)
+List(1, 2, 3).reduce((a, b) => a + b)
+List(1, 2, 3).sortWith((a, b) => a > b)
+```
 
 ---
 
 ## Curryfication
 
-Une fonction est dit *currifiée* si elle prend un unique argument.\
-La *currification* est le processus par lequel un fonction à plusieurs arguements est traduite en une séquence de fonctions a un argument.
+Une fonction est dit **currifiée** si elle prend un unique argument.
+
+La **currification** est le processus par lequel un fonction à plusieurs arguements est traduite en une séquence de fonctions a un argument.
 
 ```scala
 def add(a: Int, b: Int) = a + b
@@ -173,6 +206,7 @@ val add: Int => Int => Int = a => b => a + b
 ---
 
 ## Application partielle
+
 L'application partielle est le dual de la curryfication.
 
 Appliquer partiellement une fonction currifiée
@@ -197,7 +231,7 @@ def add5 = add(_)(5)
 
 # Expressions vs instructions
 
-Les instructions sont des *commandes* et sont donc à proscrire (impératif)
+Les instructions sont des **commandes** et sont donc à proscrire (impératif)
 ```scala
 if (cond)
     return "yes"
@@ -231,9 +265,9 @@ if (cond) "yes" else "no"
 
 # Algebraic Data Types (ADT)
 
-Les types de données algébriques servent à la modélisation de la donnée.\
-Un approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets).
-Une approche fonctionelle modélise le domaine au travers d'ADT.
+Les types de données algébriques servent à la modélisation de la donnée.
+- Un approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets)
+- Une approche fonctionelle modélise le domaine au travers d'ADT
 
 Techniquement, un ADT est une union de produits.
 
@@ -351,7 +385,7 @@ case class Person(name: String, age: Int)
 
 case class Color(red: Int, green: Int, blue: Int)
 
-val pair: (Int, String = (5, "Hello world !)
+val pair: (Int, String) = (5, "Hello world !")
 ```
 
 ---
@@ -404,6 +438,8 @@ case class StringVal(a: String) extends Expr[String]
 case class Add(lhs: Expr[Int], rhs: Expr[Int]) extends Expr[Int]
 case class Concat(lhs: Expr[String], rhs: Expr[String]) extends Expr[String]
 ```
+
+*Demonstration*
 
 ---
 
