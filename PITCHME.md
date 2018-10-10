@@ -12,7 +12,12 @@ Une approche/façon de programmer
 
 ---
 
-## Régles et objectifs du paradigme
+## Concepts du paradigme
+
+- Immuabilité
+- Récursion
+- Fonctions (first-class, d'ordre supérieur)
+- Transparence référentielle 
 
 ---
 
@@ -30,6 +35,28 @@ n = 6
 ```
 
 Le symbole **=** sert à la **déclaration**, oubliez l'assignation intrinsequement impérative.
+
+---
+
+# La récursivité
+
+La récursivité est innévitable dans un contexte immuable. C'est une approche déclarative (fonctionelle) et s'oppose à l'itération (impérative).
+
+Il existe de nombreux algorithmes et structures de données fondamentalement récursives
+- fibonacci, factorielle, pgcd, quickSort, bfs ...
+- arbres, graphes, structures composites ...
+
+En programmation fonctionelle *tout* algorithme a plusieurs étapes est résolu par récursivité, l'itération n'est pas utilisée.
+
+**Demonstration**
+
+---
+
+# La récursivité
+
+Approche "divide and conquer"
+
+![Illustration](assets/recursion.png)
 
 ---
 
@@ -229,6 +256,51 @@ def add5 = add(_)(5)
 
 ---
 
+# Transparence référentielle
+
+La transparence référentielle est une propriété (d'un programme) qui permet de remplacer une expression par sa valeure.
+
+Cette propriété est évidente en mathématiques.
+```
+x = 2
+x + x + 3 + y <=> 2 + 2 + 3 + y
+```
+
+La propriété est aussi valable dans un contexte fonctionnel
+```scala
+val x = 5
+x + x + 3 + y <=> 2 + 2 + 3 + y
+```
+
+```scala
+def square(n: Int) = n * n
+val m = square(5) + square(5) <=> val m = 25 + 25
+```
+
+---
+
+## Contre-exemples de transparence référentielle
+
+```scala
+def myFun() = {
+  println("calling myFun")
+  5
+}
+```
+
+```scala
+val x = myFun() + myFun()
+```
+
+n'est pas équivalent à
+
+```scala
+val y = myFun()
+val x = y + y
+```
+
+---
+
 # Expressions vs instructions
 
 Les instructions sont des **commandes** et sont donc à proscrire (impératif)
@@ -248,25 +320,54 @@ if (cond) "yes" else "no"
 
 ## Programmation déclarative et impérative
 
+Impératif : Un calcul est réalisé un ensemble d'instructions qui mutent un état
+```java
+int sum(List<Integer> list) {
+    int sum = 0;
+    for (int i: list) {
+        sum += i;
+    }
+    return sum;
+}
+```
+
+Déclaratif : Un calcul est exprimé
+```scala
+def sum(l: List[Int]): Int = {
+  case h :: t => h + sum(t)
+  case Nil => 0
+}
+```
+
 ---
 
-## Une expression 
+## Déclaratif/impératif en Scala
 
----
+Essayez d'utiliser au maximum les expressions. En Scala la syntaxe est un bon indicateur pour distinguer l'approche déclarative de l'approche impérative
 
-## Des instructions
+Un block de code (impératif, un block peut contenir une suite d'instructions)
+```scala
+def square(n: Int) = {
+  println("calling square")
+  n * n
+}
+```
 
----
+Une expression
+```scala
+def square(n: Int) = n * n
+```
 
-## Ambiguïtés de l'approche hybride
+Malheureusement il existe deux exception (la déclaration de variables, les fonctions partielles)
 
+*Démonstration*
 
 ---
 
 # Algebraic Data Types (ADT)
 
 Les types de données algébriques servent à la modélisation de la donnée.
-- Un approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets)
+- Une approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets)
 - Une approche fonctionelle modélise le domaine au travers d'ADT
 
 Techniquement, un ADT est une union de produits.

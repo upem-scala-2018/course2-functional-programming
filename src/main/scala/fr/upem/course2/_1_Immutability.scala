@@ -4,7 +4,7 @@ import scala.collection.mutable.ListBuffer
 
 /**
   * Écrire les versions immuables des programmes suivant.
-  * Aucune réassignation ou mutation n'est autorisé
+  * Aucune réassignation ou mutation n'est autorisée
   * Autrement-dit, ne pas utiliser de "var" ni de structures mutables (comme scala.collection.mutable.*)
   */
 object _1_Immutability {
