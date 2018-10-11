@@ -66,7 +66,7 @@ val m: Map[Int, String] = Map(1 -> "one")
 
 ---
 
-# Un paradigme de programmation
+## Un paradigme de programmation
 
 Une approche/façon de programmer
 
@@ -85,7 +85,7 @@ Une approche/façon de programmer
 
 ---
 
-# Immuabilité
+## Immuabilité
 
 La déclaration de variables est définitive, on peut apparenter cela à une équation mathématique
 ```scala
@@ -100,15 +100,23 @@ n = 6
 
 Le symbole **=** sert à la **déclaration**, oubliez l'assignation intrinsequement impérative.
 
+--- 
+
+## La récursivité
+
+![Illustration](assets/recursion.png)
+
 ---
 
-# La récursivité
+La récursivité est innévitable dans un contexte immuable. 
 
-La récursivité est innévitable dans un contexte immuable. C'est une approche déclarative (fonctionelle) et s'oppose à l'itération (impérative).
+C'est une approche déclarative (fonctionelle) et s'oppose à l'itération (impérative).
 
 Il existe de nombreux algorithmes et structures de données fondamentalement récursives
 - fibonacci, factorielle, pgcd, quickSort, bfs ...
 - arbres, graphes, structures composites ...
+
+---
 
 En programmation fonctionelle *tout* algorithme a plusieurs étapes est résolu par récursivité, l'itération n'est pas utilisée.
 
@@ -116,15 +124,7 @@ En programmation fonctionelle *tout* algorithme a plusieurs étapes est résolu 
 
 ---
 
-# La récursivité
-
-Approche "divide and conquer"
-
-![Illustration](assets/recursion.png)
-
----
-
-# La fonction
+## La fonction
 
 Penser à la fonction mathématique avec les propriétés suivantes:
 - Totale
@@ -134,7 +134,7 @@ Penser à la fonction mathématique avec les propriétés suivantes:
 
 ---
 
-## La fonction totale
+### La fonction totale
 
 Une fonction est dite totale si elle admet, pour toute valeur du domaine un valeur du codomaine.
 
@@ -146,7 +146,7 @@ En programmation: Int => ???
 
 ---
 
-## La fonction totale
+### La fonction totale
 
 La de fonction totale
 ```scala
@@ -187,7 +187,7 @@ Math.div
 
 ---
 
-## Fonctions totales et types primitifs
+### Fonctions totales et types primitifs
 
 Contrairement aux mathematiques il n'est pas possible de directement restreindre le domaine d'une fonction.
 
@@ -202,8 +202,15 @@ def fib(n: ???) = fib(n-1) + fib(n-2)
 
 ---
 
-## Rendre une fonction partielle totale
-### Modification du codomaine
+### Rendre une fonction partielle totale
+
+Une fonction partielle appelée avec une valeur en dehors de son domaine termine en erreur. Il n'est donc pas souhaitable de les utiliser.
+
+Il existe quelques techniques pour "compléter" les fonctions partielles.
+
+---
+
+#### Modification du codomaine
 
 Au lieu de restreindre le domaine, on étend le codomaine.
 
@@ -217,7 +224,7 @@ La solution n'est pas idéal
 
 ---
 
-### Modification du domaine ?
+#### Modification du domaine ?
 
 Refinement types: un type primitif + un prédicat
 - PositiveInteger: i & (i: Int, i > 0) 
@@ -233,7 +240,7 @@ def fib(n: PositiveInteger): Int = ???
 
 ---
 
-## La fonction pure
+### La fonction pure
 ```scala
 def add(a: Int, b: Int) = a + b
 ```
@@ -255,12 +262,12 @@ def add(a: Int, b: Int) = {
 
 ---
 
-### Définition effet de bord
+#### Définition effet de bord
 Une fonction est dite à effet de bord si elle a une interaction **observable** avec le monde exterieur autre que sa valeur de retour.
 
 ---
 
-## Fonction d'ordre supérieur
+### Fonction d'ordre supérieur
 
 Une fonction d'ordre supérieur satisfait est un fonction qui:
 - prend une ou plusieurs fonctions en paramètre
@@ -272,7 +279,7 @@ Pouvez-vous donner quelques exemples ?
 
 ---
 
-### Exemples de fonctions d'ordre supérieur
+#### Exemples de fonctions d'ordre supérieur
 
 ```scala
 List("1", "foo").filter(isInt)
@@ -320,7 +327,7 @@ def add5 = add(_)(5)
 
 ---
 
-# Transparence référentielle
+## Transparence référentielle
 
 La transparence référentielle est une propriété (d'un programme) qui permet de remplacer une expression par sa valeure.
 
@@ -343,7 +350,7 @@ val m = square(5) + square(5) <=> val m = 25 + 25
 
 ---
 
-## Contre-exemples de transparence référentielle
+### Contre-exemples de transparence référentielle
 
 ```scala
 def myFun() = {
@@ -365,7 +372,7 @@ val x = y + y
 
 ---
 
-# Expressions vs instructions
+## Expressions vs instructions
 
 Les instructions sont des **commandes** et sont donc à proscrire (impératif)
 ```scala
@@ -382,7 +389,7 @@ if (cond) "yes" else "no"
 
 ---
 
-## Programmation déclarative et impérative
+### Programmation déclarative et impérative
 
 Impératif : Un calcul est réalisé un ensemble d'instructions qui mutent un état
 ```java
@@ -405,7 +412,7 @@ def sum(l: List[Int]): Int = {
 
 ---
 
-## Déclaratif/impératif en Scala
+### Déclaratif/impératif en Scala
 
 Essayez d'utiliser au maximum les expressions. En Scala la syntaxe est un bon indicateur pour distinguer l'approche déclarative de l'approche impérative
 
@@ -428,7 +435,7 @@ Malheureusement il existe deux exception (la déclaration de variables, les fonc
 
 ---
 
-# Algebraic Data Types (ADT)
+## Algebraic Data Types (ADT)
 
 Les types de données algébriques servent à la modélisation de la donnée.
 - Une approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets)
@@ -460,7 +467,7 @@ case class Branch(left: Tree, right: Tree, v: Int) extends Tree
 
 ---
 
-## Complexité des types
+### Complexité des types
 
 Combien de *Nothing* ?
 Combien de *Unit* ?
@@ -471,7 +478,7 @@ Combien de *String* ?
 
 ---
 
-## Complexité des types
+### Complexité des types
 
 Combien de *Nothing* ? *0*
 Combien de *Unit* ? *1*
@@ -482,7 +489,7 @@ Combien de *String* ? *∞*
 
 ---
 
-## Complexité des types produits
+### Complexité des types produits
 
 Combien de Boolean et Boolean ?
 Combien de Boolean et Byte ?
@@ -491,7 +498,7 @@ Combien de Boolean et Nothing ?
 
 ---
 
-## Complexité des types produits
+### Complexité des types produits
 
 Combien de Boolean et Boolean ? *2 \* 2 = 4*
 Combien de Boolean et Byte ? *2 \* 256 = 512*
@@ -500,7 +507,7 @@ Combien de Boolean et Nothing ? *2 \* 0 = 0*
 
 ---
 
-## Complexité des types somme
+### Complexité des types somme
 
 Combien de Boolean et Boolean ?
 Combien de Boolean et Byte ?
@@ -509,7 +516,7 @@ Combien de Boolean et Nothing ?
 
 ---
 
-## Complexité des types somme
+### Complexité des types somme
 
 Combien de Boolean et Boolean ? *2 + 2 = 4*
 Combien de Boolean et Byte ? *2 + 256 = 258*
@@ -518,7 +525,7 @@ Combien de Boolean et Nothing ? *2 + 0 = 2*
 
 ---
 
-## Complexité d'un ADT
+### Complexité d'un ADT
 
 Combien de (Boolean et Unit) ou Byte ? *(2 \* 1) + 256 = 512*
 Combien de (Boolean ou Unit) et Boolean ? *(2 + 1) \* 256 = 768*
@@ -526,7 +533,7 @@ Combien de Boolean et Byte et Noting ? *2 \* 256 \* 0 = 0*
 
 ---
 
-## Encodage des types unions
+### Encodage des types unions
 
 Encodage par sous-typage
 ```scala
@@ -543,7 +550,7 @@ val errorOrSuccess: Either[Error, Int] = readFile("file.txt")
 
 ---
 
-## Encodage des types produits
+### Encodage des types produits
 
 ```scala
 case class Person(name: String, age: Int)
@@ -555,7 +562,7 @@ val pair: (Int, String) = (5, "Hello world !")
 
 ---
 
-## Exemple d'ADTs
+### Exemple d'ADTs
 
 ```scala
 sealed trait Vehicle
@@ -566,7 +573,7 @@ case class Car(doors: Int, weight: Int) extends Vehicle
 
 ---
 
-## ADT Paramétriques
+### ADT Paramétriques
 
 ```scala
 sealed trait Tree[+A]
@@ -608,7 +615,7 @@ case class Concat(lhs: Expr[String], rhs: Expr[String]) extends Expr[String]
 
 ---
 
-# A retenir
+## A retenir
 
 - Functions mathématiques (*totales* et *pures*)
 - Résourdre les calculs par une approche déclarative plutôt qu'impérative
