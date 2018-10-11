@@ -5,7 +5,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class _3_HigherOrderFunctionsTest extends FlatSpec with Matchers {
 
-  "3.1 KeepEventNumbers" should "filter odd" in {
+  "3.1 KeepEventNumbers" should "keep odd numbers" in {
     keepEvenNumbers(List(1, 2, 3, 4, 5)) should equal(List(2, 4))
   }
 

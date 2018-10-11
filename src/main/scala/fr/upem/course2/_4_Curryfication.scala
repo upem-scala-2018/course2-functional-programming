@@ -1,14 +1,13 @@
 package fr.upem.course2
 
+/**
+  * Rappel:
+  * Une fonction currifiée est une fonction a un argument (qui retourne éventuellement
+  * d'autres fonctions a un argument)
+  * Une fonction partiellement appliquée est une fonction dont un ou plusieurs arguments
+  * ont été "fixés"
+  */
 object _4_Curryfication {
-
-  /**
-    * Rappel:
-    * Une fonction currifiée est une fonction a un argument (qui retourne éventuellement
-    * d'autres fonctions a un argument)
-    * Une fonction partiellement appliquée est une fonction dont un ou plusieurs arguments
-    * ont été "fixés"
-    */
 
   // 4.1 Currifiez la fonction add
   def add(a: Int, b: Int): Int = a + b

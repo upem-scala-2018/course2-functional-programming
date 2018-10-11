@@ -1,4 +1,68 @@
-# La programmation fonctionnelle
+# Rappels cours 1
+
+---
+
+## Définition de variable
+```scala
+val s1 = "Ma variable immutable"
+```
+
+## Définition de fonction
+```scala
+val plus2: Int => Int = x => x + 2
+```
+
+## Définition de méthodes
+```scala
+def plus2(x: Int): Int = x + 2
+```
+
+---
+
+## Définition de classes
+```scala
+class Vehicule(val name: String)
+```
+
+## Définition d'objects
+```scala
+object Math {
+  def pow(base: Double, exp: Double) = ???
+}
+```
+
+## Définition de traits
+```scala
+trait Wheels {
+  val wheelsCount: Int
+}
+```
+
+---
+
+## Pattern matching
+
+```scala
+Option(4) match {
+  case Some(7) => "sevent"
+  case None => "empty"
+  case _ => "other"
+}
+```
+
+---
+
+## Génericité
+
+```scala
+def identity[A](a: A) = a
+val m: Map[Int, String] = Map(1 -> "one")
+
+```
+
+---
+
+# Cours 2: La programmation fonctionnelle
 
 ---
 

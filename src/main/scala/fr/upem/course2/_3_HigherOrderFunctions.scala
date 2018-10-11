@@ -1,12 +1,11 @@
 package fr.upem.course2
 
+/**
+  * La librairie standard utilise abandonment les fonctions d'ordre supérieur.
+  * Rappel: Une fonction d'ordre supérieur est une fonction qui prend une fonction
+  * d'ordre supérieur en argument ou retourne une fonction.
+  */
 object _3_HigherOrderFunctions {
-
-  /**
-    * La librairie standard utilise abandonment les fonctions d'ordre supérieur.
-    * Rappel: Une fonction d'ordre supérieur est une fonction qui prend une fonction
-    * d'ordre supérieur en argument ou retourne une fonction.
-    */
 
   // 3.1 Trouvez une fonction d'ordre supérieur de la librairie standard qui conserve les nombre pairs.
   def keepEvenNumbers[A](l: List[Int]): List[Int] = ???

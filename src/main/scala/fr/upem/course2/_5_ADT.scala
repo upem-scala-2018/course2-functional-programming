@@ -1,12 +1,11 @@
 package fr.upem.course2
 
+/**
+  * Rappel: Les ADT servent pour la modélisation de la donnée de votre domaine (métier)
+  * Type somme: Union de types, A ou B (A | B)
+  * Type produit: A et B (A * B)
+  */
 object _5_ADT {
-
-  /**
-    * Rappel: Les ADT servent pour la modélisation de la donnée de votre domaine (métier)
-    * Type somme: Union de types, A ou B (A | B)
-    * Type produit: A et B (A * B)
-    */
 
   // 5.1 Créer un type somme pour les composantes couleur (Red, Blue, Green)
   sealed trait Color
@@ -26,7 +25,7 @@ object _5_ADT {
 
 
   // 5.5 L'ADT suivant décrit un simple DSL
-  // Generaliser l'ADT afin d'ajouter trois constructeur au langage: EPrtLn, ESucc et ECond
+  // Generaliser (GADT) l'ADT afin d'ajouter trois constructeur au langage: EPrtLn, ESucc et ECond
   // EAdd additionne les deux expression entières
   // ESucc retourne le successeur de l'expression entière (i + 1)
   // EPrtLn affiche l'expression String
