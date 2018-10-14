@@ -107,7 +107,7 @@ Le symbole **=** sert à la **déclaration**, oubliez l'assignation intrinsequem
 
 ## La récursivité
 
-![Illustration](assets/recursion.png)
+![Illustration](assets/fractal.png)
 
 ---
 
@@ -116,20 +116,21 @@ La récursivité est innévitable dans un contexte immuable.
 C'est une approche déclarative (fonctionelle) et s'oppose à l'itération (impérative).
 
 Il existe de nombreux algorithmes et structures de données fondamentalement récursives
-- fibonacci, factorielle, pgcd, quickSort, bfs ...
+- fibonacci, factorielle, pgcd, quickSort, bfs, dfs ...
 - arbres, graphes, structures composites ...
 
 ---
 
 En programmation fonctionelle *tout* algorithme a plusieurs étapes est résolu par récursivité, l'itération n'est pas utilisée.
 
-**Demonstration**
 
 ---
 
 ## La fonction
 
-Penser à la fonction mathématique avec les propriétés suivantes:
+Penser à la *fonction mathématique* 
+
+avec les propriétés suivantes:
 - Totale
 - Pure
 
@@ -141,17 +142,15 @@ Penser à la fonction mathématique avec les propriétés suivantes:
 
 Une fonction est dite totale si elle admet, pour toute valeur du domaine un valeur du codomaine.
 
-En maths: ℤ => ℤ
-En programmation: Int => Int
+En math: ℤ => ℤ  -  En programmation: Int => Int
 
-En maths: ℤ => ℕ
-En programmation: Int => ???
+En math: ℤ => ℕ  -  En programmation: Int => ???
 
 ---
 
 ### La fonction totale
 
-La de fonction totale
+Une fonction totale
 ```scala
 def max(a: Int, b: Int) = if (a >= b) a else b
 ```
@@ -164,7 +163,7 @@ def partial(unit: String): Int =
   else throw new IllegalArgumentException("Unknown unit")
 ```
 
-Une fonction partielle (non terminaison/ boucle infinie)
+Une fonction partielle (non terminaison)
 ```scala
 def fib(n: Int): Int = 
   if (n == 1 || n == 2) 1 
@@ -186,8 +185,6 @@ Math.sqrt
 Math.div
 ```
 
-*Demonstration*
-
 ---
 
 ### Fonctions totales et types primitifs
@@ -195,6 +192,9 @@ Math.div
 Contrairement aux mathematiques il n'est pas possible de directement restreindre le domaine d'une fonction.
 
 Les briques de bases en programmation sont les types primitifs (Int, Boolean).
+
+---
+
 
 Exemple: 
 - En math: Pour tout **n >= 1**, Fib(n) = Fib(n-1) + Fib(n-2)
@@ -221,7 +221,7 @@ Au lieu de restreindre le domaine, on étend le codomaine.
 def fib(n: Int): Option[Int] = ???
 ```
 
-La solution n'est pas idéal
+La solution n'est pas idéale
 - La fonction fib a plusieurs responsabilités (gestion des valeurs invalides + calcul de la suite de fibonacci)
 - L'appel *valide* fib(8) retourne Some(13) et non 13
 
@@ -230,16 +230,14 @@ La solution n'est pas idéal
 #### Modification du domaine ?
 
 Refinement types: un type primitif + un prédicat
-- PositiveInteger: i & (i: Int, i > 0) 
-- EvenNumber: i & (i: Int, i % 2 == 0) 
+- PositiveInteger: *i & (i: Int, i > 0)* 
+- EvenNumber: *i & (i: Int, i % 2 == 0)* 
 ```scala
 def fib(n: PositiveInteger): Int = ???
 ```
 
 - La définition de types "affinés" n'est pas supportée nativement par Scala mais possible au travers de *Refined*
-- C'est une feature présente plutôt dans des langages "académiques" (liquid Haskell)
-
-*Demonstration*
+- C'est une feature présente plutôt dans des langages "académiques" (LiquidHaskell)
 
 ---
 
@@ -261,8 +259,6 @@ def add(a: Int, b: Int) = {
 }
 ```
 
-*Demonstration*
-
 ---
 
 #### Définition effet de bord
@@ -272,11 +268,11 @@ Une fonction est dite à effet de bord si elle a une interaction **observable** 
 
 ### Fonction d'ordre supérieur
 
-Une fonction d'ordre supérieur satisfait est un fonction qui:
+Une fonction d'ordre supérieur est un fonction qui:
 - prend une ou plusieurs fonctions en paramètre
 - retourne une fonction
 
-Ces fonctions sont abondantes et sont des "first class citizen" dans la plupart des langages.
+Ces fonctions sont abondantes et sont des "first-class citizen" dans la plupart des langages.
 
 Pouvez-vous donner quelques exemples ?
 
@@ -315,14 +311,12 @@ Appliquer partiellement une fonction currifiée
 def add5 = add(5)
 ```
 
-En scala il est aussi possible de :
-
 Appliquer partiellement une fonction non currifiée
 ```scala
 def add5 = add(5, _)
 ```
 
-Appliquer partiellement les paramètre non linéairement
+Appliquer partiellement les paramètres non linéairement
 ```scala
 def add5 = add(_, 5)
 def add5 = add(_)(5)
@@ -334,11 +328,13 @@ def add5 = add(_)(5)
 
 La transparence référentielle est une propriété (d'un programme) qui permet de remplacer une expression par sa valeure.
 
-Cette propriété est évidente en mathématiques.
+Cette propriété est évidente en mathématique.
 ```
 x = 2
 x + x + 3 + y <=> 2 + 2 + 3 + y
 ```
+
+---
 
 La propriété est aussi valable dans un contexte fonctionnel
 ```scala
@@ -385,7 +381,7 @@ else
     return "no"
 ```
 
-Les expression décrivent une valeur
+Les expressions décrivent une valeur
 ```scala
 if (cond) "yes" else "no"
 ``` 
@@ -417,7 +413,9 @@ def sum(l: List[Int]): Int = {
 
 ### Déclaratif/impératif en Scala
 
-Essayez d'utiliser au maximum les expressions. En Scala la syntaxe est un bon indicateur pour distinguer l'approche déclarative de l'approche impérative
+Essayez d'utiliser au maximum les expressions. 
+
+En Scala la syntaxe est un bon indicateur pour distinguer l'approche déclarative de l'approche impérative
 
 Un block de code (impératif, un block peut contenir une suite d'instructions)
 ```scala
@@ -427,14 +425,16 @@ def square(n: Int) = {
 }
 ```
 
-Une expression
+--- 
+
+### Déclaratif/impératif en Scala
+
+Une expression (pas de bloc/d'accolades)
 ```scala
 def square(n: Int) = n * n
 ```
 
 Malheureusement il existe deux exception (la déclaration de variables, les fonctions partielles)
-
-*Démonstration*
 
 ---
 
@@ -442,7 +442,7 @@ Malheureusement il existe deux exception (la déclaration de variables, les fonc
 
 Les types de données algébriques servent à la modélisation de la donnée.
 - Une approche objet modélise le domaine au travers d'objets (et de hierarchies d'objets)
-- Une approche fonctionelle modélise le domaine au travers d'ADT
+- Une approche fonctionelle modélise le domaine au travers d'ADTs
 
 Techniquement, un ADT est une union de produits.
 
@@ -451,13 +451,13 @@ Techniquement, un ADT est une union de produits.
 Type union (Haskell)
 ```
 data Bool = True | False
-Bool peut prendre les valeurs True *ou* False
+Bool peut prendre les valeurs True OU False
 ```
 
 Type produit (Haskell)
 ```
 data Coordinates = Cood Float Float
-Le constructeur "Coord" peut pendre toutes les combinaison de Float *et* Float
+Le constructeur "Coord" peut pendre toutes les combinaison de Float ET Float
 ```
 
 En scala (ADT par sous-typage)
@@ -472,67 +472,96 @@ case class Branch(left: Tree, right: Tree, v: Int) extends Tree
 
 ### Complexité des types
 
-Combien de *Nothing* ?
-Combien de *Unit* ?
-Combien de *Boolean* ?
-Combien de *Byte* ?
-Combien de *Int* ?
-Combien de *String* ?
+- Combien de *Nothing* ?
+
+- Combien de *Unit* ?
+
+- Combien de *Boolean* ?
+
+- Combien de *Byte* ?
+
+- Combien de *Int* ?
+
+- Combien de *String* ?
 
 ---
 
 ### Complexité des types
 
-Combien de *Nothing* ? *0*
-Combien de *Unit* ? *1*
-Combien de *Boolean* ? *2*
-Combien de *Byte* ? *256*
-Combien de *Int* ? *2^32*
-Combien de *String* ? *∞*
+- Combien de Nothing ? 0
+
+- Combien de Unit ? 1
+
+- Combien de Boolean ? 2
+
+- Combien de Byte ? 256
+
+- Combien de Int ? 2^32
+
+- Combien de String ? ∞
 
 ---
 
 ### Complexité des types produits
 
-Combien de Boolean et Boolean ?
-Combien de Boolean et Byte ?
-Combien de Boolean et Unit ?
-Combien de Boolean et Nothing ?
+- Combien de Boolean et Boolean ?
+
+- Combien de Boolean et Byte ?
+
+- Combien de Boolean et Unit ?
+
+- Combien de Boolean et Nothing ?
+
 
 ---
 
 ### Complexité des types produits
 
-Combien de Boolean et Boolean ? *2 \* 2 = 4*
-Combien de Boolean et Byte ? *2 \* 256 = 512*
-Combien de Boolean et Unit ? *2 \* 1 = 2*
-Combien de Boolean et Nothing ? *2 \* 0 = 0*
+- Combien de Boolean et Boolean ? 2 * 2 = 4
+
+- Combien de Boolean et Byte ? 2 * 256 = 512
+
+- Combien de Boolean et Unit ? 2 * 1 = 2
+
+- Combien de Boolean et Nothing ? 2 * 0 = 0
+
 
 ---
 
 ### Complexité des types somme
 
-Combien de Boolean et Boolean ?
-Combien de Boolean et Byte ?
-Combien de Boolean et Unit ?
-Combien de Boolean et Nothing ?
+- Combien de Boolean et Boolean ?
+
+- Combien de Boolean et Byte ?
+
+- Combien de Boolean et Unit ?
+
+- Combien de Boolean et Nothing ?
+
 
 ---
 
 ### Complexité des types somme
 
-Combien de Boolean et Boolean ? *2 + 2 = 4*
-Combien de Boolean et Byte ? *2 + 256 = 258*
-Combien de Boolean et Unit ? *2 + 1 = 3*
-Combien de Boolean et Nothing ? *2 + 0 = 2*
+- Combien de Boolean et Boolean ? 2 + 2 = 4
+
+- Combien de Boolean et Byte ? 2 + 256 = 258
+
+- Combien de Boolean et Unit ? 2 + 1 = 3
+
+- Combien de Boolean et Nothing ? 2 + 0 = 2
+
 
 ---
 
 ### Complexité d'un ADT
 
-Combien de (Boolean et Unit) ou Byte ? *(2 \* 1) + 256 = 512*
-Combien de (Boolean ou Unit) et Boolean ? *(2 + 1) \* 256 = 768*
-Combien de Boolean et Byte et Noting ? *2 \* 256 \* 0 = 0*
+- Combien de (Boolean et Unit) ou Byte ? (2 * 1) + 256 = 512
+
+- Combien de (Boolean ou Unit) et Boolean ? (2 + 1) * 256 = 768
+
+- Combien de Boolean et Byte et Nothing ? 2 * 256 * 0 = 0
+
 
 ---
 
@@ -569,7 +598,7 @@ val pair: (Int, String) = (5, "Hello world !")
 
 ```scala
 sealed trait Vehicle
-case object Bycicle extends Vehicle 
+case object Bicycle extends Vehicle 
 case class Motorcycle(horsepower: Int) extends Vehicle
 case class Car(doors: Int, weight: Int) extends Vehicle
 ```
@@ -615,14 +644,12 @@ case class Add(lhs: Expr[Int], rhs: Expr[Int]) extends Expr[Int]
 case class Concat(lhs: Expr[String], rhs: Expr[String]) extends Expr[String]
 ```
 
-*Demonstration*
-
 ---
 
 ## A retenir
 
 - Functions mathématiques (*totales* et *pures*)
-- Résourdre les calculs par une approche déclarative plutôt qu'impérative
+- Résourdre les calculs par une approche déclarative
 - Des ADT pour la modélisation de données
 
 - Ce méfier des features impératives de Scala
