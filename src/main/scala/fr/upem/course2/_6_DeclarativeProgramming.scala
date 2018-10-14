@@ -7,25 +7,13 @@ package fr.upem.course2
 object _6_DeclarativeProgramming {
 
   // 6.1 Utilisez une approche déclarative
-  def cond(boolean: Boolean): String = {
-    if (boolean) {
-      return "true";
-    }
-    else {
-      return "false";
-    }
-  }
+  def cond(boolean: Boolean): String = if (boolean) "true" else "false"
 
   // 6.2 Utilisez la récursivité pour éviter l'approche impérative
-  def countEvenNumbers(l: List[Int]): Int = {
-    var i = 0;
-    var count = 0;
-    while (i < l.length) {
-      if (l(i) % 2 == 0)
-        count = count + 1;
-      i = i + 1
-    }
-    return count;
+  def countEvenNumbers(l: List[Int]): Int = l match {
+    case x :: xs if x % 2 == 0 => 1 + countEvenNumbers(xs)
+    case _ :: xs => countEvenNumbers(xs)
+    case Nil => 0
   }
 
 

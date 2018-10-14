@@ -8,10 +8,10 @@ package fr.upem.course2
 object _3_HigherOrderFunctions {
 
   // 3.1 Trouvez une fonction d'ordre supérieur de la librairie standard qui conserve les nombre pairs.
-  def keepEvenNumbers[A](l: List[Int]): List[Int] = ???
+  def keepEvenNumbers[A](l: List[Int]): List[Int] = l.filter(x => x % 2 == 0)
 
   // 3.2 Concaténer la liste au format csv (ex: List("a","b") => a,b)
-  def concatAsCsv[A](l: List[A], show: A => String): String = ???
+  def concatAsCsv[A](l: List[A], show: A => String): String = l.map(show).mkString(",")
 
   // 3.3 La fonction compose prend deux fonctions en argument et retourne une fonction
   // qui est la composition des deux.

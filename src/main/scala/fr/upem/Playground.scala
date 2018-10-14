@@ -6,6 +6,7 @@ import eu.timepit.refined._
 
 object Playground extends App {
 
+  /*
   type PositiveInt = Refined[Int, Positive]
 
   def fib(n : PositiveInt): PositiveInt = {
@@ -14,6 +15,7 @@ object Playground extends App {
   }
 
   fib(refineMV(5))
+*/
 
 }
 

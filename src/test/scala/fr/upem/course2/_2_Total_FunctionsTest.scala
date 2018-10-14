@@ -9,7 +9,7 @@ class _2_Total_FunctionsTest extends FlatSpec with Matchers {
 
   "2.1 DivTotal" should "divide safely" in {
     divTotal(5, 5) should equal(Some(1))
-    divTotal(5, 5) should be(None)
+    divTotal(5, 0) should be(None)
   }
 
   "2.2 IndexOfTotal" should "divide safely" in {

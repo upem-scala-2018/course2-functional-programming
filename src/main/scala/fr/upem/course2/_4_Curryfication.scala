@@ -11,19 +11,21 @@ object _4_Curryfication {
 
   // 4.1 Currifiez la fonction add
   def add(a: Int, b: Int): Int = a + b
+
   // Créer une méthode currifiée
-  def addCurriedMethod = ???
+  def addCurriedMethod(a: Int)(b: Int) = a + b
+
   // Créer une value function currifiée
-  lazy val addCurriedValueFunction = ???
+  lazy val addCurriedValueFunction = (a: Int) => (b: Int) => a + b
   // Créer une value function currifiée (en utilisant la méthode "curried" définie sur FunctionN)
-  lazy val addCurriedStdLib = ???
+  lazy val addCurriedStdLib = ((a: Int, b: Int) => a + b).curried
 
 
   // 4.2 Appliquer partiellement la fonction addCurriedValueFunction précédente
-  lazy val add5: Int => Int = ???
+  lazy val add5: Int => Int = addCurriedValueFunction(5)
 
   // 4.3 Appliquer partiellement la fonction add précédente
-  lazy val add3: Int => Int = ???
+  lazy val add3: Int => Int = addCurriedValueFunction(5)
 
   // 4.4 Currifiez la fonction filter
   def filter[A](l: List[A], pred: A => Boolean): List[A] =
@@ -32,10 +34,12 @@ object _4_Curryfication {
       case h :: t if pred(h) => h :: filter(t, pred)
       case _ :: t => filter(t, pred)
     }
-  def filterCurried[A]  = ???
+
+  def filterCurried[A](l: List[A])(pred: A => Boolean) = filter(l, pred)
 
   // 4.5 Appliquer partiellement la méthode filter (fixer le prédicat avec isEven)
   def isEven(i: Int): Boolean = i % 2 == 0
-  lazy val keepEvenNumbers: List[Int] => List[Int] = ???
+
+  lazy val keepEvenNumbers: List[Int] => List[Int] = l => l.filter(isEven)
 
 }
