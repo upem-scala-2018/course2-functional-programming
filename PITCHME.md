@@ -12,7 +12,7 @@ val s1 = "Ma variable immutable"
 val plus2: Int => Int = x => x + 2
 ```
 
-## Définition de méthodes
+## Définition de méthode
 ```scala
 def plus2(x: Int): Int = x + 2
 ```
@@ -44,7 +44,7 @@ trait Wheels {
 
 ```scala
 Option(4) match {
-  case Some(7) => "sevent"
+  case Some(7) => "seven"
   case None => "empty"
   case _ => "other"
 }
@@ -587,7 +587,8 @@ Nombreux dans la librairie standard.
 
 ## Generalized Algebraic Data Types (GADT)
 
-Les GADTs sont une géneralization des ADT paramétrés.\
+Les GADTs sont une géneralization des ADT paramétrés.
+
 Plus puissants et plus expressifs que les ADT "classiques".
 
 Comment modéliser le DSL suivant ?
