@@ -2,36 +2,49 @@
 
 ---
 
-## Définition de variable
+### Définition de variable
 ```scala
 val s1 = "Ma variable immutable"
 ```
 
-## Définition de fonction
+### Définition de fonction
 ```scala
 val plus2: Int => Int = x => x + 2
 ```
 
-## Définition de méthode
+### Définition de méthode
 ```scala
 def plus2(x: Int): Int = x + 2
+```
+---
+
+### Génericité
+
+```scala
+def identity[A](a: A) = a
+def combine[A](l: List[A], combine: A => A => A)
 ```
 
 ---
 
-## Définition de classes
+### Définition de classes
 ```scala
 class Vehicule(val name: String)
 ```
 
-## Définition d'objects
+### Définition de case classes
+```scala
+case class Vehicule(name: String)
+```
+
+### Définition d'objects
 ```scala
 object Math {
   def pow(base: Double, exp: Double) = ???
 }
 ```
 
-## Définition de traits
+### Définition de traits
 ```scala
 trait Wheels {
   val wheelsCount: Int
@@ -40,7 +53,7 @@ trait Wheels {
 
 ---
 
-## Pattern matching
+### Pattern matching
 
 ```scala
 Option(4) match {
@@ -48,16 +61,6 @@ Option(4) match {
   case None => "empty"
   case _ => "other"
 }
-```
-
----
-
-## Génericité
-
-```scala
-def identity[A](a: A) = a
-val m: Map[Int, String] = Map(1 -> "one")
-
 ```
 
 ---
