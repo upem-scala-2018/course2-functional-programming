@@ -403,10 +403,11 @@ int sum(List<Integer> list) {
 
 Déclaratif : Un calcul est exprimé
 ```scala
-def sum(l: List[Int]): Int = {
-  case h :: t => h + sum(t)
-  case Nil => 0
-}
+def sum(l: List[Int]): Int = 
+  l match {
+    case h :: t => h + sum(t)
+    case Nil => 0
+  }
 ```
 
 ---
