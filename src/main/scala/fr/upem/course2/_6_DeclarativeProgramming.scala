@@ -16,5 +16,15 @@ object _6_DeclarativeProgramming {
     case Nil => 0
   }
 
+  // 6.3 Calcul le prix en fonction de l'âge
+  def priceMutable(age: Int): Int = {
+    if (age < 4) return 0
+    else if (age < 12) return 4
+    else if (age < 16) return 6
+    else if (age < 18) return 12
+
+    return 25
+  }
+
 
 }
