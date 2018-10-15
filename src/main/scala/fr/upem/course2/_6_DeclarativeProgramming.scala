@@ -25,6 +25,12 @@ object _6_DeclarativeProgramming {
 
     return 25
   }
-
+  def priceImmutable(age: Int): Int = age match {
+    case x if x < 4 => 0
+    case x if x < 12 => 4
+    case x if x < 16 => 6
+    case x if x < 18 => 12
+    case _ => 25
+  }
 
 }

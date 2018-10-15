@@ -21,4 +21,11 @@ class _1_ImmutabilityTest extends FlatSpec with Matchers {
     mergeSortedImmutable(sorted1, sorted2) should equal(List(9, 10, 11, 12, 20, 30, 40, 45))
   }
 
+  it should "merge two list when one is empty" in {
+    val sorted1 = List.empty
+    val sorted2 = List(9, 11, 12, 45)
+
+    mergeSortedImmutable(sorted1, sorted2) should equal(sorted2)
+  }
+
 }

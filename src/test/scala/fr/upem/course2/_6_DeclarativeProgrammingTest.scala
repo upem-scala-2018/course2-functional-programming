@@ -14,10 +14,9 @@ class _6_DeclarativeProgrammingTest extends FlatSpec with Matchers {
     countEvenNumbers(List(2, 2, 3)) should equal(2)
   }
 
-
   "Price" should "return a price for the given age" in {
-    priceMutable(2) should be(0)
-    priceMutable(19) should be(25)
+    priceImmutable(2) should be(0)
+    priceImmutable(19) should be(25)
   }
 
 }

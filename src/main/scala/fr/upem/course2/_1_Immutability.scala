@@ -72,11 +72,11 @@ object _1_Immutability {
   }
 
   def mergeSortedImmutable(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
-    case (x :: xs, a@y :: _) if x < y => x :: mergeSortedImmutable(xs, a)
-    case (a@x :: _, y :: ys) if x > y => y :: mergeSortedImmutable(ys, a)
-    case (x :: xs, Nil) => x :: mergeSortedImmutable(xs, Nil)
-    case (Nil, y :: ys) => y :: mergeSortedImmutable(ys, Nil)
     case (Nil, Nil) => Nil
+    case (Nil, _) => l2
+    case (_, Nil) => l1
+    case (x :: xs, y :: _) if x < y => x :: mergeSortedImmutable(xs, l2)
+    case (_, y :: ys) => y :: mergeSortedImmutable(ys, l1)
   }
 
 }
