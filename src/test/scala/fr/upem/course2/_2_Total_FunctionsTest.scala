@@ -22,6 +22,11 @@ class _2_Total_FunctionsTest extends FlatSpec with Matchers {
     "fibTotalRefined(refineMV[Positive](0))" shouldNot compile
   }
 
+  "2.4 FibTotalForExpr" should "compute the fibonacci sequence safely" in {
+    fibTotalRefinedForExpression(refineMV[Positive](5)) should equal(refineV[Positive](5))
+    "fibTotalRefinedForExpression(refineMV[Positive](0))" shouldNot compile
+  }
+
   "2.6 ParseTotal" should "parse safely" in {
     parseTotal("one") should equal(Some(1))
     parseTotal("one thousand") should equal(None)
