@@ -14,10 +14,10 @@ object _5_ADT {
   case object Blue
 
   // 5.2 Créer un type produit pour un rectangle avec son hauteur et largeur
-  case class Rectangle(height: Double, width: Double)
+  // case class Rectangle ???
 
   // 5.3 Créer un type produit pour un cercle avec son rayon
-  case class Circle(radius: Double)
+  // case class Circle ???
 
   // 5.4 Combiner les deux types produits précedants dans un ADT
   sealed trait Shape
