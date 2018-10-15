@@ -35,7 +35,6 @@ object _1_Immutability {
     case Nil => 0
   }
 
-
   // 1.3 Fusionne deux liste triés et retourne une nouvelle liste triée
   def mergeSorted(l1: List[Int], l2: List[Int]): List[Int] = {
     var result = new ListBuffer[Int]
