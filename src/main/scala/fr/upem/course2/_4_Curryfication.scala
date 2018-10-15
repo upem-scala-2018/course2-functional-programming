@@ -25,7 +25,7 @@ object _4_Curryfication {
   lazy val add5: Int => Int = addCurriedValueFunction(5)
 
   // 4.3 Appliquer partiellement la fonction add précédente
-  lazy val add3: Int => Int = addCurriedValueFunction(5)
+  lazy val add3: Int => Int = addCurriedValueFunction(3)
 
   // 4.4 Currifiez la fonction filter
   def filter[A](l: List[A], pred: A => Boolean): List[A] =
