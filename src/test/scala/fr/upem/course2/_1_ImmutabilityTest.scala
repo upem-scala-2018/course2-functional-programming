@@ -14,11 +14,6 @@ class _1_ImmutabilityTest extends FlatSpec with Matchers {
     numberOfMutable(List(7, 3, 10, 1))(isPair) should be(1)
   }
 
-  "Price" should "return a price for the given age" in {
-    priceMutable(2) should be(0)
-    priceMutable(19) should be(25)
-  }
-
   "MergeSorted" should "merge two sorted list into a sorted list" in {
     val sorted1 = List(10, 20, 30, 40)
     val sorted2 = List(9, 11, 12, 45)

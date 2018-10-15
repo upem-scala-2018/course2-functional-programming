@@ -29,20 +29,10 @@ object _1_Immutability {
   def numberOfImmutable[A](l: List[A], predicate: A => Boolean): Int = ???
 
 
-  // 1.3 Calcul le prix en fonction de l'âge
-  def priceMutable(age: Int): Int = {
-    if (age < 4) return 0
-    else if (age < 12) return 4
-    else if (age < 16) return 6
-    else if (age < 18) return 12
-
-    return 25
-  }
-
   def priceImmutable(age: Int): Int = ???
 
 
-  // 1.4 Fusionne deux liste triés et retourne une nouvelle liste triée
+  // 1.3 Fusionne deux liste triés et retourne une nouvelle liste triée
   def mergeSorted(l1: List[Int], l2: List[Int]): List[Int] = {
     var result = new ListBuffer[Int]
     var rest1 = ListBuffer.concat(l1)
