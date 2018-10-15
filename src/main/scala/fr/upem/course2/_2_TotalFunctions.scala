@@ -25,7 +25,7 @@ object _2_TotalFunctions {
   // 2.3 Trouvez deux facon de rendre cette fonction totale
   def mul2Partial(amount: String): Int = amount.toInt * 2
   def mul2Total1(amount: String): Try[Int] = Try(amount.toInt).map(_ * 2)
-  def mul2Total2(amount: String): Option[Int] = mul2Total1(amount).toOption
+  def mul2Total2(amount: Int): Int = amount * 2
 
   // 2.4 Rendre la fonction fib totale
   def fibPartial(n: Int): Int =
