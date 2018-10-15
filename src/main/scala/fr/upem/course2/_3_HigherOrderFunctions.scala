@@ -18,7 +18,7 @@ object _3_HigherOrderFunctions {
   // Exemple :
   // val add1: Int => Int = i => i + 1
   // val add2 = compose(add1, add1)
-  def compose[A, B, C](f: A => B, g: B => C): A => C = f.andThen(g)
+  def compose[A, B, C](f: A => B, g: B => C): A => C = ???
 
 
 }
