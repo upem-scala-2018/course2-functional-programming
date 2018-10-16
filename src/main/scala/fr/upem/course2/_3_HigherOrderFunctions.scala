@@ -7,7 +7,8 @@ package fr.upem.course2
   */
 object _3_HigherOrderFunctions {
 
-  // 3.1 Trouvez une fonction d'ordre supérieur de la librairie standard qui conserve les nombre pairs.
+  // 3.1 Trouvez une fonction d'ordre supérieur de la librairie standard qui conserve les nombre pairs
+  // Cherchez parmis les méthodes de List
   def keepEvenNumbers[A](l: List[Int]): List[Int] = ???
 
   // 3.2 Concaténer la liste au format csv (ex: List("a","b") => a,b)
