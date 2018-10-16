@@ -18,7 +18,7 @@ class _2_Total_FunctionsTest extends FlatSpec with Matchers {
   }
 
   "2.4 FibTotal" should "compute the fibonacci sequence safely" in {
-    fibTotal(5) should equal(5)
+    fibTotal(5) should equal(Some(5))
   }
 
   "2.5 FibTotalRefined" should "compute the fibonacci sequence safely" in {
