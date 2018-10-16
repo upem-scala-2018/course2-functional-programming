@@ -15,6 +15,7 @@ object _6_DeclarativeProgramming {
       return "false";
     }
   }
+  def condDecl(boolean: Boolean): String = ???
 
   // 6.2 Utilisez la récursivité pour éviter l'approche impérative
   def countEvenNumbers(l: List[Int]): Int = {
@@ -27,9 +28,10 @@ object _6_DeclarativeProgramming {
     }
     return count;
   }
+  def countEvenNumbersDecl(l: List[Int]): Int = ???
 
-  // 6.3 Calcul le prix en fonction de l'âge
-  def priceMutable(age: Int): Int = {
+  // 6.3 Utilisez une approche déclarative
+  def price(age: Int): Int = {
     if (age < 4) return 0
     else if (age < 12) return 4
     else if (age < 16) return 6
@@ -37,6 +39,7 @@ object _6_DeclarativeProgramming {
 
     return 25
   }
+  def priceDecl(age: Int): Int = ???
 
 
 }
