@@ -11,13 +11,14 @@ object _4_Curryfication {
 
   // 4.1 Currifiez la fonction add
   def add(a: Int, b: Int): Int = a + b
+  val addValueFunction: (Int, Int) => Int = add
 
   // Créer une méthode currifiée
   def addCurriedMethod(a: Int)(b: Int) = a + b
 
   // Créer une value function currifiée
   lazy val addCurriedValueFunction = (a: Int) => (b: Int) => a + b
-  // Créer une value function currifiée (en utilisant la méthode "curried" définie sur FunctionN)
+  // Créer une value function currifiée (en utilisant la méthode "curried" définie sur FunctionN) à partir de addValueFunction
   lazy val addCurriedStdLib = ((a: Int, b: Int) => a + b).curried
 
 
