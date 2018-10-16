@@ -9,9 +9,6 @@ object _5_ADT {
 
   // 5.1 Créer un type somme pour les composantes couleur (Red, Blue, Green)
   sealed trait Color
-  case object Red
-  case object Green
-  case object Blue
 
   // 5.2 Créer un type produit pour un rectangle avec son hauteur et largeur
   // case class Rectangle ???
