@@ -43,8 +43,14 @@ object _2_TotalFunctions {
     if (a.value == 1 || a.value == 2) Right(refineMV[Positive](1))
     else
       refineV[Positive](a.value - 1)
-        .flatMap(ref1 => fibTotalRefined(ref1)
-          .flatMap(res1 => refineV[Positive](a.value - 2).flatMap(ref2 => fibTotalRefined(ref2)).flatMap(res2 => refineV[Positive](res1.value + res2.value))))
+        .flatMap(ref1 =>
+          fibTotalRefined(ref1).flatMap(res1 =>
+            refineV[Positive](a.value - 2).flatMap(ref2 =>
+              fibTotalRefined(ref2)).flatMap(res2 =>
+              refineV[Positive](res1.value + res2.value)
+            )
+          )
+        )
 
   def fibTotalRefinedForExpression(a: Refined[Int, Positive]): Either[String, Refined[Int, Positive]] =
     if (a.value == 1 || a.value == 2) Right(refineMV[Positive](1))
