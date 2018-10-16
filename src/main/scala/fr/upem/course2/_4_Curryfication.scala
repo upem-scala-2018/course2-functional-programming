@@ -24,7 +24,7 @@ object _4_Curryfication {
   // 4.2 Appliquer partiellement la fonction addCurriedValueFunction précédente
   lazy val add5: Int => Int = addCurriedValueFunction(5)
 
-  // 4.3 Appliquer partiellement la fonction add précédente
+  // 4.3 Appliquer partiellement la méthode add précédente
   lazy val add3: Int => Int = add(3, _)
 
   // 4.4 Currifiez la fonction filter
