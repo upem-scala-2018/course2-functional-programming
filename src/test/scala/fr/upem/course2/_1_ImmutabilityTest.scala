@@ -7,10 +7,12 @@ class _1_ImmutabilityTest extends FlatSpec with Matchers {
 
   "Sum" should "compute the sum of given integers" in {
     sumImmutable(List(7, 3, 10, 1)) should be(21)
+    sumImmutable(List(7, 3, 10, 1)) should be(21)
   }
 
   "NumberOf" should "compute the sum of given integers" in {
     val isPair: Int => Boolean = i => (i % 2) == 0
+    numberOfImmutable(List(7, 3, 10, 1), isPair) should be(1)
     numberOfImmutable(List(7, 3, 10, 1), isPair) should be(1)
   }
 
@@ -25,6 +27,7 @@ class _1_ImmutabilityTest extends FlatSpec with Matchers {
     val sorted1 = List.empty
     val sorted2 = List(9, 11, 12, 45)
 
+    mergeSortedMutable(sorted1, sorted2) should equal(sorted2)
     mergeSortedImmutable(sorted1, sorted2) should equal(sorted2)
   }
 

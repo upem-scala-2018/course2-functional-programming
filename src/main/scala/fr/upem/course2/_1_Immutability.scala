@@ -23,7 +23,7 @@ object _1_Immutability {
 
 
   // 1.2 Compte le nombre d'élements satisfaisant une certaine condition
-  def numberOfMutable[A](l: List[A])(predicate: A => Boolean): Int = {
+  def numberOfMutable[A](l: List[A], predicate: A => Boolean): Int = {
     var count = 0
     l.foreach(a => if (predicate(a)) count += 1)
     return count
@@ -36,7 +36,7 @@ object _1_Immutability {
   }
 
   // 1.3 Fusionne deux liste triés et retourne une nouvelle liste triée
-  def mergeSorted(l1: List[Int], l2: List[Int]): List[Int] = {
+  def mergeSortedMutable(l1: List[Int], l2: List[Int]): List[Int] = {
     var result = new ListBuffer[Int]
     var rest1 = ListBuffer.concat(l1)
     var rest2 = ListBuffer.concat(l2)
@@ -69,7 +69,6 @@ object _1_Immutability {
 
     return result.toList
   }
-
   def mergeSortedImmutable(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
     case (Nil, Nil) => Nil
     case (Nil, _) => l2
