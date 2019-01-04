@@ -1,7 +1,7 @@
 lazy val `upem-course-2` = (project in file(".")).
   settings(
     inThisBuild(List(
-      organization := "fr/upem",
+      organization := "fr.upem",
       scalaVersion := "2.12.7",
       version := "1.0.0"
     )),
